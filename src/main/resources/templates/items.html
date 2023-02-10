@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inventory Management</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Inventory Management</a>
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <!--<a class="nav-link" th:href="@{/items}">Inventory Management</a>-->
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+	<div class="row">
+	<h1>LIST OF ITEMS</h1>
+	</div>
+	<div class="row">
+		<div class = "col-lg-3">
+			<a th:href="@{/items/new}" class="btn btn-warning btn-sm mb-3">Add Item</a>
+		</div>
+	</div>
+	<table class="table table-striped table-bordered">
+	<thead class="table-dark">
+	<tr>
+		<th>Item Name</th>
+		<th>Price</th>
+		<th>Current Stock</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr th:each = "item: ${items}">
+			<td th:text = "${item.ItemName}"></td>
+			<td th:text = "${item.Price}"></td>
+			<td th:text = "${item.CurrentStock}"></td>
+			<td>
+				<a th:href = "@{/items/edit/{id}(id=${item.id})}"
+				class = "btn btn-info">Update</a>
+				
+				<a th:href = "@{/items/hi/{id} (id=${item.id})}"
+				class = "btn btn-success">Buy</a>
+			</td>
+		</tr>
+	</tbody>
+	
+	</table>
+</div>
+
+</body>
+</html>
